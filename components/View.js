@@ -7,7 +7,7 @@ export const View = ({ isSafe, style, children }) => {
 
   if (isSafe) {
     return (
-      <RNView style={{ paddingTop: insets.top, ...style }}>{children}</RNView>
+      <RNView style={[StyleSheet.flatten(style), { paddingTop: insets.top + 20 }]}>{children}</RNView>
     );
   }
 

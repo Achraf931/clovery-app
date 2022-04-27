@@ -16,21 +16,21 @@ export const TextInput = ({
   return (
     <View
       style={{
-        backgroundColor: Colors.white,
-        borderRadius: 8,
+        backgroundColor: Colors.lightBlue,
+        borderRadius: 100,
         flexDirection: 'row',
-        padding: 12,
+        padding: 15,
         marginVertical: 12,
         width,
         borderWidth: 1,
-        borderColor: Colors.mediumGray
+        borderColor: 'transparent'
       }}
     >
       {leftIconName ? (
         <Icon
           name={leftIconName}
           size={22}
-          color={Colors.mediumGray}
+          color={Colors.customBlue}
           style={{ marginRight: 10 }}
         />
       ) : null}
@@ -38,10 +38,12 @@ export const TextInput = ({
         style={{
           flex: 1,
           width: '100%',
+          outline: 'none',
           fontSize: 18,
-          color: Colors.black
+          color: Colors.customBlue,
+          fontFamily: 'Gotham'
         }}
-        placeholderTextColor={Colors.mediumGray}
+        placeholderTextColor={Colors.customBlue}
         {...otherProps}
       />
       {rightIcon ? (
@@ -49,7 +51,7 @@ export const TextInput = ({
           <Icon
             name={rightIcon}
             size={22}
-            color={Colors.mediumGray}
+            color={Colors.customBlue}
             style={{ marginRight: 10 }}
           />
         </Button>

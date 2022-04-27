@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import {Text, StyleSheet, Pressable} from 'react-native';
 import { Formik } from 'formik';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -31,11 +31,9 @@ export const SignupScreen = ({ navigation }) => {
 
   return (
     <View isSafe style={styles.container}>
-      <KeyboardAwareScrollView enableOnAndroid={true}>
         {/* LogoContainer: consits app logo and screen title */}
         <View style={styles.logoContainer}>
-          <Logo uri={Images.logo} />
-          <Text style={styles.screenTitle}>Create a new account!</Text>
+          <Text style={styles.screenTitle}>Clovery<Text style={{color: Colors.pink}}>.</Text></Text>
         </View>
         {/* Formik Wrapper */}
         <Formik
@@ -91,7 +89,7 @@ export const SignupScreen = ({ navigation }) => {
               <TextInput
                 name='confirmPassword'
                 leftIconName='key-variant'
-                placeholder='Enter password'
+                placeholder='Confirm password'
                 autoCapitalize='none'
                 autoCorrect={false}
                 secureTextEntry={confirmPasswordVisibility}
@@ -118,29 +116,29 @@ export const SignupScreen = ({ navigation }) => {
           )}
         </Formik>
         {/* Button to navigate to Login screen */}
-        <Button
+        <Pressable
           style={styles.borderlessButtonContainer}
           borderless
-          title={'Already have an account?'}
           onPress={() => navigation.navigate('Login')}
-        />
-      </KeyboardAwareScrollView>
+        ><Text style={{fontFamily: 'GilroyRegular', fontWeight: 700, color: Colors.blue}}>Already have an account?</Text></Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     flex: 1,
-    backgroundColor: Colors.white,
-    paddingHorizontal: 12
+    justifyContent: 'center',
+    backgroundColor: Colors.background,
   },
   logoContainer: {
     alignItems: 'center'
   },
   screenTitle: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontFamily: 'GilroyExtraBold',
+    fontWeight: 900,
+    fontSize: 45,
     color: Colors.black,
     paddingTop: 20
   },
@@ -149,17 +147,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
-    backgroundColor: Colors.orange,
-    padding: 10,
-    borderRadius: 8
+    backgroundColor: Colors.pink,
+    padding: 15,
+    borderRadius: 100
   },
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: '700'
+    fontFamily: 'GilroyBold',
   },
   borderlessButtonContainer: {
-    marginTop: 16,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center'
   }

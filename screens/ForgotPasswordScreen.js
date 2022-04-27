@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import {Pressable, StyleSheet, Text} from 'react-native';
 import { Formik } from 'formik';
 import { sendPasswordResetEmail } from 'firebase/auth';
 
@@ -23,9 +23,7 @@ export const ForgotPasswordScreen = ({ navigation }) => {
 
   return (
     <View isSafe style={styles.container}>
-      <View style={styles.innerContainer}>
-        <Text style={styles.screenTitle}>Reset your password</Text>
-      </View>
+      <Text style={styles.screenTitle}>Reset your password</Text>
       <Formik
         initialValues={{ email: '' }}
         validationSchema={passwordResetSchema}
@@ -65,28 +63,28 @@ export const ForgotPasswordScreen = ({ navigation }) => {
         )}
       </Formik>
       {/* Button to navigate to Login screen */}
-      <Button
-        style={styles.borderlessButtonContainer}
-        borderless
-        title={'Go back to Login'}
-        onPress={() => navigation.navigate('Login')}
-      />
+      <Pressable
+          style={styles.borderlessButtonContainer}
+          borderless
+          onPress={() => navigation.navigate('Login')}
+      >
+        <Text style={{fontFamily: 'GilroyMedium', color: Colors.blue}}>Go back to Login</Text>
+      </Pressable>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     flex: 1,
-    backgroundColor: Colors.white,
-    paddingHorizontal: 12
-  },
-  innercontainer: {
-    alignItems: 'center'
+    justifyContent: 'center',
+    backgroundColor: Colors.background,
   },
   screenTitle: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontFamily: 'GilroyExtraBold',
+    fontSize: 25,
+    textAlign: 'center',
     color: Colors.black,
     paddingTop: 20
   },
@@ -95,17 +93,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
-    backgroundColor: Colors.orange,
-    padding: 10,
-    borderRadius: 8
+    backgroundColor: Colors.pink,
+    padding: 15,
+    borderRadius: 100
   },
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: '700'
+    fontFamily: 'GilroyBold',
   },
   borderlessButtonContainer: {
-    marginTop: 16,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center'
   }

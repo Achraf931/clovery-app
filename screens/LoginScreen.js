@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet } from 'react-native';
+import {Text, StyleSheet, Pressable} from 'react-native';
 import { Formik } from 'formik';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { View, TextInput, Logo, Button, FormErrorMessage } from '../components';
-import { Images, Colors, auth } from '../config';
+import {View, TextInput, Logo, Button, FormErrorMessage, LoadingIndicator} from '../components';
+import { Colors, auth } from '../config';
 import { useTogglePasswordVisibility } from '../hooks';
 import { loginValidationSchema } from '../utils';
 
@@ -21,13 +20,10 @@ export const LoginScreen = ({ navigation }) => {
     );
   };
   return (
-    <>
       <View isSafe style={styles.container}>
-        <KeyboardAwareScrollView enableOnAndroid={true}>
           {/* LogoContainer: consits app logo and screen title */}
           <View style={styles.logoContainer}>
-            <Logo uri={Images.logo} />
-            <Text style={styles.screenTitle}>Welcome back!</Text>
+            <Text style={styles.screenTitle}>Clovery<Text style={{color: Colors.pink}}>.</Text></Text>
           </View>
           <Formik
             initialValues={{
@@ -93,43 +89,38 @@ export const LoginScreen = ({ navigation }) => {
             )}
           </Formik>
           {/* Button to navigate to SignupScreen to create a new account */}
-          <Button
-            style={styles.borderlessButtonContainer}
-            borderless
-            title={'Create a new account?'}
+          <Pressable
+              style={styles.borderlessButtonContainer}
+              borderless
             onPress={() => navigation.navigate('Signup')}
-          />
-          <Button
-            style={styles.borderlessButtonContainer}
-            borderless
-            title={'Forgot Password'}
+          >
+            <Text style={{fontFamily: 'GilroyRegular', fontWeight: 700, color: Colors.blue}}>Create a new account?</Text>
+          </Pressable>
+          <Pressable
+              style={styles.borderlessButtonContainer}
+              borderless
             onPress={() => navigation.navigate('ForgotPassword')}
-          />
-        </KeyboardAwareScrollView>
+          >
+            <Text style={{fontFamily: 'GilroyMedium', color: Colors.blue}}>Forgot Password</Text>
+          </Pressable>
       </View>
-
-      {/* App info footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerText}>
-          Expo Firebase Starter App (based on managed workflow)
-        </Text>
-      </View>
-    </>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    padding: 20,
     flex: 1,
-    backgroundColor: Colors.white,
-    paddingHorizontal: 12
+    justifyContent: 'center',
+    backgroundColor: Colors.background,
   },
   logoContainer: {
     alignItems: 'center'
   },
   screenTitle: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontFamily: 'GilroyExtraBold',
+    fontWeight: 900,
+    fontSize: 45,
     color: Colors.black,
     paddingTop: 20
   },
@@ -149,17 +140,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: 8,
-    backgroundColor: Colors.orange,
-    padding: 10,
-    borderRadius: 8
+    backgroundColor: Colors.pink,
+    padding: 15,
+    borderRadius: 100
   },
   buttonText: {
     fontSize: 20,
     color: Colors.white,
-    fontWeight: '700'
+    fontFamily: 'GilroyBold',
   },
   borderlessButtonContainer: {
-    marginTop: 16,
+    marginTop: 10,
     alignItems: 'center',
     justifyContent: 'center'
   }

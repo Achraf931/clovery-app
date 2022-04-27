@@ -6,11 +6,19 @@ import { AuthStack } from './AuthStack';
 import { AppStack } from './AppStack';
 import { AuthenticatedUserContext } from '../providers';
 import { LoadingIndicator } from '../components';
-import { auth } from '../config';
+import {auth, Fonts} from '../config';
+import {useFonts} from "expo-font";
 
 export const RootNavigator = () => {
   const { user, setUser } = useContext(AuthenticatedUserContext);
   const [isLoading, setIsLoading] = useState(true);
+
+  let [fontsLoaded] = useFonts({
+    GilroyRegular: Fonts.GilroyRegular,
+    GilroyMedium: Fonts.GilroyMedium,
+    GilroyBold: Fonts.GilroyBold,
+    GilroyExtraBold: Fonts.GilroyExtraBold,
+  });
 
   useEffect(() => {
     // onAuthStateChanged returns an unsubscriber
@@ -26,7 +34,7 @@ export const RootNavigator = () => {
     return unsubscribeAuthStateChanged;
   }, [user]);
 
-  if (isLoading) {
+  if (isLoading || !fontsLoaded) {
     return <LoadingIndicator />;
   }
 
